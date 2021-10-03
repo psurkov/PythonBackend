@@ -2,8 +2,8 @@ import uuid
 
 from fastapi import HTTPException
 
-from src.main.dao import task_dao
-from src.main.model.task_model import TaskCreateModel, TaskModel
+from app.src.main.dao import task_dao
+from app.src.main.model.task_model import TaskCreateModel, TaskModel
 
 
 def __validate_score(task: TaskCreateModel):

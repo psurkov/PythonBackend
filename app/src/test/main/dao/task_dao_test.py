@@ -1,6 +1,6 @@
 import unittest
-import src.main.dao.task_dao as task_dao
-from src.main.model.task_model import TaskModel
+import app.src.main.dao.task_dao as task_dao
+from app.src.main.model.task_model import TaskModel
 
 
 class GetTaskByIdTest(unittest.TestCase):

@@ -1,4 +1,4 @@
-from src.main.model.task_model import TaskModel
+from app.src.main.model.task_model import TaskModel
 
 tasks = [
     TaskModel(id="30", name="Name1", description="description1", original_score=10.0, score_after_soft_deadline=0.3),

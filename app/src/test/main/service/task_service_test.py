@@ -1,8 +1,8 @@
 import unittest
 from fastapi import HTTPException
-import src.main.service.task_service as task_service
-from src.main.model.task_model import TaskCreateModel
-import src.main.dao.task_dao as task_dao
+import app.src.main.service.task_service as task_service
+from app.src.main.model.task_model import TaskCreateModel
+import app.src.main.dao.task_dao as task_dao
 
 
 class TestCreateTask(unittest.TestCase):

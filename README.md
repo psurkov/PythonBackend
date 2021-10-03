@@ -1,15 +1,27 @@
 # PythonBackend
 Проект для курса PythonBackend
 ## Запуск
+Grpc сервис календарь
 ```bash
-uvicorn src.main.main:app
+python calendarApp/src/main/main.py
+```
+Основное приложение
+```bash
+uvicorn app.src.main.main:app
 ```
 ## API
 `http://127.0.0.1:8000/docs`
+`http://127.0.0.1:8000/calendar`
 
 ## Tests
-`python -m unittest src.test.main.dao.task_dao_test
-` для запуска тестов на `task_dao`, это юнит тесты
-
-`python -m unittest src.test.main.service.task_service_test
-` для запуска тестов на `service_test`, это интеграционные тесты
+```bash
+python -m unittest app.src.test.main.dao.task_dao_test
+python -m unittest app.src.test.main.service.task_service_test
+python -m unittest app.src.test.main.main_test
+python -m unittest calendarApp.src.test.main_test
+```
+## Regenerate proto
+Чтобы перегенерировать proto файлы используйте
+```bash
+python -m grpc_tools.protoc -I . --python_out=calendarApp/src/main/ --python_out=. --grpc_python_out=calendarApp/src/main/ --grpc_python_out=. calendar.proto
+```

@@ -1,4 +1,17 @@
+aniso8601==7.0.0
 fastapi==0.68.1
+graphene==2.1.9
+graphql-core==2.3.2
+graphql-relay==2.0.1
+grpcio==1.41.0
+grpcio-tools==1.41.0
+passlib==1.7.4
+promise==2.3
+protobuf==3.18.0
 pydantic==1.8.2
+PyJWT==2.1.0
+Rx==1.6.1
+six==1.16.0
 starlette==0.14.2
 typing-extensions==3.10.0.2
+requests==2.26.0
