@@ -3,9 +3,16 @@ from fastapi import HTTPException
 import app.src.main.service.task_service as task_service
 from app.src.main.model.task_model import TaskCreateModel
 import app.src.main.dao.task_dao as task_dao
+import app.src.main.database as database
 
 
 class TestCreateTask(unittest.TestCase):
+    def setUp(self) -> None:
+        database.init()
+
+    def tearDown(self) -> None:
+        database.clear()
+
     def test_create_simple_task(self):
         created_task = task_service.create_task(TaskCreateModel(name="name",
                                                                 description="description",
@@ -37,6 +44,42 @@ class TestCreateTask(unittest.TestCase):
 
 
 class TestGetTask(unittest.TestCase):
+    def setUp(self) -> None:
+        database.init()
+        database.execute('''
+            insert into tasks(id, name, description, original_score, score_after_soft_deadline)
+            values ('{}', '{}', '{}', '{}', '{}')
+            '''.format(
+            "30",
+            "Name1",
+            "description1",
+            10.0,
+            0.3)
+        )
+        database.execute('''
+                    insert into tasks(id, name, description, original_score, score_after_soft_deadline)
+                    values ('{}', '{}', '{}', '{}', '{}')
+                    '''.format(
+            "239",
+            "Name2",
+            "description2",
+            13.0,
+            0.5)
+        )
+        database.execute('''
+                    insert into tasks(id, name, description, original_score, score_after_soft_deadline)
+                    values ('{}', '{}', '{}', '{}', '{}')
+                    '''.format(
+            "566",
+            "Name3",
+            "description3",
+            5.0,
+            0.1)
+        )
+
+    def tearDown(self) -> None:
+        database.clear()
+
     def test_get_existing_task(self):
         task = task_service.get_task("566")
         self.assertEqual("Name3", task.name)

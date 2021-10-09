@@ -1,5 +1,6 @@
 from pydantic import BaseModel
+from typing import List
 
 
 class EventCreateModel(BaseModel):
-    participants: list[str]
+    participants: List[str]

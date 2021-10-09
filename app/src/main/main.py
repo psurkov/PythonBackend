@@ -7,7 +7,9 @@ import app.src.main.service.event_service as event_service
 from app.src.main.graphene_query.calendar import CalendarQuery
 from app.src.main.model.task_model import TaskModel, TaskCreateModel
 from app.src.main.model.event_model import EventCreateModel
+import app.src.main.database as database
 
+database.init()
 app = FastAPI()
 
 app.add_route("/calendar", GraphQLApp(schema=graphene.Schema(query=CalendarQuery)))

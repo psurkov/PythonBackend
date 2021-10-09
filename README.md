@@ -1,13 +1,15 @@
 # PythonBackend
 Проект для курса PythonBackend
 ## Запуск
+Установить и поднять сервер PostgreSQL, в `app/src/main/database.py` задать настройки подключения
+
 Grpc сервис календарь
 ```bash
-python calendarApp/src/main/main.py
+python3 calendarApp/src/main/main.py
 ```
 Основное приложение
 ```bash
-uvicorn app.src.main.main:app
+python3 -m uvicorn app.src.main.main:app
 ```
 ## API
 `http://127.0.0.1:8000/docs`

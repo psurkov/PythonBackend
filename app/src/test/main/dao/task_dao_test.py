@@ -1,9 +1,47 @@
 import unittest
 import app.src.main.dao.task_dao as task_dao
 from app.src.main.model.task_model import TaskModel
+import app.src.main.database as database
 
 
 class GetTaskByIdTest(unittest.TestCase):
+
+    def setUp(self) -> None:
+        database.init()
+        database.execute('''
+            insert into tasks(id, name, description, original_score, score_after_soft_deadline)
+            values ('{}', '{}', '{}', '{}', '{}')
+            '''.format(
+            "30",
+            "Name1",
+            "description1",
+            10.0,
+            0.3)
+        )
+        database.execute('''
+                    insert into tasks(id, name, description, original_score, score_after_soft_deadline)
+                    values ('{}', '{}', '{}', '{}', '{}')
+                    '''.format(
+            "239",
+            "Name2",
+            "description2",
+            13.0,
+            0.5)
+        )
+        database.execute('''
+                    insert into tasks(id, name, description, original_score, score_after_soft_deadline)
+                    values ('{}', '{}', '{}', '{}', '{}')
+                    '''.format(
+            "566",
+            "Name3",
+            "description3",
+            5.0,
+            0.1)
+        )
+
+    def tearDown(self) -> None:
+        database.clear()
+
     def test_get_task_by_id_existing(self):
         task = task_dao.get_task_by_id("566")
         self.assertEqual("Name3", task.name)
@@ -25,10 +63,10 @@ class GetTaskByIdTest(unittest.TestCase):
 
 class UpsertTaskTest(unittest.TestCase):
     def setUp(self) -> None:
-        self.tasks_copy = task_dao.tasks.copy()
+        database.init()
 
     def tearDown(self) -> None:
-        task_dao.tasks = self.tasks_copy
+        database.clear()
 
     def test_upsert_task(self):
         new_task = TaskModel(id="100", name="Name4", description="description4", original_score=10.0,
