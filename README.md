@@ -3,6 +3,11 @@
 ## Запуск
 Установить и поднять сервер PostgreSQL, в `app/src/main/database.py` задать настройки подключения
 
+Запустить RabbitMQ, например в докере:
+```bash
+docker run -it --rm --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3.9-management
+```
+
 Grpc сервис календарь
 ```bash
 python3 calendarApp/src/main/main.py
@@ -10,6 +15,10 @@ python3 calendarApp/src/main/main.py
 Основное приложение
 ```bash
 python3 -m uvicorn app.src.main.main:app
+```
+Notify сервис
+```bash
+python3 notifyApp/src/main/main.py
 ```
 ## API
 `http://127.0.0.1:8000/docs`
